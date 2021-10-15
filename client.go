@@ -86,8 +86,6 @@ func client() {
 			}
 		//class average
 		case 4:
-			var class string
-			var result float64
 			fmt.Println("Class: ")
 			scanner.Scan()
 			_class = scanner.Text()
