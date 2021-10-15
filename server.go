@@ -75,7 +75,6 @@ func (this *Server) OverallAverage(op int64, result *float64) error {
 func (this *Server) ClassAverage(class string, result *float64) error {
 	var score_average, i float64
 	if val, ok := this.classes[class]; ok {
-		fmt.Println(val)
 		for _, score := range val {
 			score_average += score
 			i += 1
