@@ -43,27 +43,45 @@ func (this *Server) AddClass(data []string, reply *int64) error {
 	}
 	class[data[1]] = score
 	this.students[data[0]] = class
-
 	fmt.Println(this.classes)
 	fmt.Println(this.students)
 	return nil
 }
 
 func (this *Server) StudentAverage(name string, result *float64) error {
-	var score float64
-
-	i := 0.0
+	var score_average, i float64
 	if val, ok := this.students[name]; ok {
-		for _, score = range val {
-			score += score
+		for _, score := range val {
+			score_average += score
 			i += 1
-			fmt.Println(score)
 		}
 	}
+	*result = (score_average / i)
+	return nil
+}
 
-	fmt.Println(score)
-	fmt.Println(i)
-	*result = score / i
+func (this *Server) OverallAverage(op int64, result *float64) error {
+	var score_average, i float64
+	for _, student := range this.students {
+		for _, score := range student {
+			score_average += score
+			i += 1
+		}
+	}
+	*result = (score_average / i)
+	return nil
+}
+
+func (this *Server) ClassAverage(class string, result *float64) error {
+	var score_average, i float64
+	if val, ok := this.classes[class]; ok {
+		fmt.Println(val)
+		for _, score := range val {
+			score_average += score
+			i += 1
+		}
+	}
+	*result = (score_average / i)
 	return nil
 }
 

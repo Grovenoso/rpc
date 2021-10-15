@@ -74,30 +74,29 @@ func client() {
 			if err != nil {
 				fmt.Println(err)
 			} else {
-				fmt.Println("Server.StudentAverage", name, "=", result)
+				fmt.Println(name, " average: ", result)
 			}
 		//all students average
 		case 3:
-			err = c.Call("Server.StudentsAverage", op, &result)
+			err = c.Call("Server.OverallAverage", op, &result)
 			if err != nil {
 				fmt.Println(err)
 			} else {
-
+				fmt.Println("Overall Average: ", result)
 			}
 		//class average
 		case 4:
 			var class string
 			var result float64
-
 			fmt.Println("Class: ")
 			scanner.Scan()
 			_class = scanner.Text()
 
-			err = c.Call("Server.ClassAverage", class, &result)
+			err = c.Call("Server.ClassAverage", _class, &result)
 			if err != nil {
 				fmt.Println(err)
 			} else {
-				fmt.Println(class, ": ", result)
+				fmt.Println(_class, " average: ", result)
 			}
 		//exit
 		case 0:
